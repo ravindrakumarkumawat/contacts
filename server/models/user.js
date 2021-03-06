@@ -9,23 +9,11 @@ const userSchema = new mongoose.Schema({
     trim: true,
     lowercase: true,
     unique: true,
-    validate: {
-        validator: function(v) {
-            return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
-        },
-        message: "Please enter a valid email"
-    },
-    required: [true, "Email required"]
+    required: true
   },
   phone: {
     type: String,
-    validate: {
-      validator: function(v) {
-        return /\d{3}-\d{3}-\d{4}/.test(v);
-      },
-      message: props => `${props.value} is not a valid phone number!`
-    },
-    required: [true, 'User phone number required']
+    required: true
   },
   company: {
     type: String,
