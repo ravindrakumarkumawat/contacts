@@ -1,18 +1,34 @@
 import React from "react"
-import ContactPhoneIcon from "@material-ui/icons/ContactPhone"
-import Divider from "@material-ui/core/Divider"
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import ContactsIcon from '@material-ui/icons/Contacts';
+
+const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1,        
+    marginTop: "1.5rem",    
+    marginLeft: "2.5rem",
+  },
+  contactIcon: {
+    height: "2.5rem",
+    width: "2.5rem",
+    marginTop: "1.2rem"
+  },
+  headerText: {    
+    marginTop: "1.5rem"
+  }
+}));
 
 const Contact =() =>{
-
+  const classes = useStyles();
     return (
-        <Grid container >
-          <Grid item xs={6}>        
-            <ContactPhoneIcon />
+        <Grid container spacing={6} className={classes.root}>
+          <Grid item xs={1}>        
+            <ContactsIcon className={classes.contactIcon}/>
           </Grid>
 
-          <Grid item xs={6}>        
-            <h1>Contacts</h1>
+          <Grid item xs={11}>        
+            <h3 className={classes.headerText}>Contacts</h3>
           </Grid>
         </Grid>  
     );  
