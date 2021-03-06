@@ -26,7 +26,7 @@ const styles = (theme) => ({
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
-  },
+  }
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -85,11 +85,11 @@ const App = () => {
         <Grid item xs={6}>
           <Contact />
         </Grid>
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item xs={4}>
             <Search />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={2} >
             <Button
               variant="contained"
               color="secondary"
