@@ -3,12 +3,8 @@ import ContactPhoneIcon from "@material-ui/icons/ContactPhone"
 import Divider from "@material-ui/core/Divider"
 import Grid from "@material-ui/core/Grid";
 
-class Contact extends React.Component {
-  state = {
-    name: "abhi",
-  };
+const Contact =() =>{
 
-  render() {
     return (
         <Grid container >
           <Grid item xs={6}>        
@@ -19,8 +15,7 @@ class Contact extends React.Component {
             <h1>Contacts</h1>
           </Grid>
         </Grid>  
-    );
-  }
+    );  
 }
 
 export default Contact

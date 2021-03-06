@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     height: "30px",
     width: "30px",
+    backgroundColor: "green",
     marginTop: "18px"
   },
   checkbox: {
@@ -48,7 +49,8 @@ const ContactList = () => {
 
   const checked = true;
   const handleChange = () => {};
-  const classes = useStyles();
+  const classes = useStyles();  
+  const randomColor = Math.floor(Math.random()*16777215).toString(16);
 
   return (
     <>

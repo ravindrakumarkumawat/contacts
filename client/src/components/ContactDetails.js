@@ -18,7 +18,10 @@ const useStyles = makeStyles((theme) => ({
     width: "5rem",
   },
   grid: {
-    border: "1px solid red"
+    border: "1px solid red",
+    marginLeft: "3rem",
+    padding: "1rem",
+    width: "30rem"
   },
   center: {    
     margin: "auto",
@@ -26,43 +29,44 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ContactDetails = () => {  
+const ContactDetails = ({ fullName, email, phone, company, address }) => {  
   const classes = useStyles();
+
   return (
     <Grid container className={classes.grid}>
       <Grid item xs={12} >
         <Avatar className={`${classes.center} ${classes.avatar}`}>H</Avatar>
-        <h2 className={classes.center}>Contact Details</h2>
+        <p className={classes.center}>Contact Details</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Full name</h2>
+        <p>Full name</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Ravindra Kumawat</h2>
+        <p>{fullName}</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Email</h2>
+        <p>Email</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>ravindra@gmail.com</h2>
+        <p>{email}</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Phone</h2>
+        <p>Phone</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Contact Details</h2>
+        <p>{phone}</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Company</h2>
+        <p>Company</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Contact Details</h2>
+        <p>{company}</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Address</h2>
+        <p>Address</p>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Contact Details</h2>
+        <p>{address}</p>
       </Grid>
     </Grid>
 
