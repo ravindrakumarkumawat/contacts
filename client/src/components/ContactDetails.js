@@ -35,39 +35,33 @@ const ContactDetails = () => {
         <h2 className={classes.center}>Contact Details</h2>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Contact Details</h2>
+        <h2 className={classes.center}>Full name</h2>
+      </Grid>
+      <Grid item xs={6} >
+        <h2 className={classes.center}>Ravindra Kumawat</h2>
+      </Grid>
+      <Grid item xs={6} >
+        <h2 className={classes.center}>Email</h2>
+      </Grid>
+      <Grid item xs={6} >
+        <h2 className={classes.center}>ravindra@gmail.com</h2>
+      </Grid>
+      <Grid item xs={6} >
+        <h2 className={classes.center}>Phone</h2>
       </Grid>
       <Grid item xs={6} >
         <h2 className={classes.center}>Contact Details</h2>
       </Grid>
       <Grid item xs={6} >
-        <h2 className={classes.center}>Contact Details</h2>
+        <h2 className={classes.center}>Company</h2>
       </Grid>
       <Grid item xs={6} >
         <h2 className={classes.center}>Contact Details</h2>
       </Grid>
       <Grid item xs={6} >
-        <Avatar className={`${classes.center} ${classes.avatar}`}>H</Avatar>
-        <h2 className={classes.center}>Contact Details</h2>
+        <h2 className={classes.center}>Address</h2>
       </Grid>
       <Grid item xs={6} >
-        <Avatar className={`${classes.center} ${classes.avatar}`}>H</Avatar>
-        <h2 className={classes.center}>Contact Details</h2>
-      </Grid>
-      <Grid item xs={6} >
-        <Avatar className={`${classes.center} ${classes.avatar}`}>H</Avatar>
-        <h2 className={classes.center}>Contact Details</h2>
-      </Grid>
-      <Grid item xs={6} >
-        <Avatar className={`${classes.center} ${classes.avatar}`}>H</Avatar>
-        <h2 className={classes.center}>Contact Details</h2>
-      </Grid>
-      <Grid item xs={6} >
-        <Avatar className={`${classes.center} ${classes.avatar}`}>H</Avatar>
-        <h2 className={classes.center}>Contact Details</h2>
-      </Grid>
-      <Grid item xs={6} >
-        <Avatar className={`${classes.center} ${classes.avatar}`}>H</Avatar>
         <h2 className={classes.center}>Contact Details</h2>
       </Grid>
     </Grid>
