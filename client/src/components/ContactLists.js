@@ -60,7 +60,12 @@ const ContactList = () => {
   
   const handleDelete = (e, id) => {
     e.stopPropagation()
-    fetch(`http://localhost:5001/users/${id}`).then((response) => response.json()).then((res) => res.delete ? setDeleted(true) : setDeleted(false))
+    fetch(`http://localhost:5001/users/${id}`,{
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then((response) => response.json()).then((res) => res.delete ? setDeleted(true) : setDeleted(false))
   }
 
   return (
