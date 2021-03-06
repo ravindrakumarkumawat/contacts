@@ -6,8 +6,6 @@ import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 import ContactDetails from "./ContactDetails";
 
-const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -31,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     height: "30px",
     width: "30px",
-    backgroundColor: `#${randomColor}`,
+    backgroundColor: "#f50057",
     marginTop: "18px",
   },
   checkbox: {

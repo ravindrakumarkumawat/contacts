@@ -15,15 +15,17 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     height: "5rem",
-    width: "5rem",
+    width: "5rem",    
+    backgroundColor: "#f50057",
   },
   grid: {
-    border: "1px solid red",
     marginLeft: "10rem",
     padding: "2rem",
     width: "25rem",
+    fontSize: ".8rem",
+    fontFamily: "Helvetica",    
     backgroundColor: "#F1F1F1",
-    fontSize: ".8rem"
+    color: "#E0BB75"
   },
   center: {    
     margin: "auto",
