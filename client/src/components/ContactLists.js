@@ -5,6 +5,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 import ContactDetails from "./ContactDetails";
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,15 +44,24 @@ const ContactList = () => {
   const classes = useStyles();
   const [contacts, setContacts] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [deleted, setDeleted] = useState(false)
   const checked = true;
 
   useEffect(() => {
     fetch("http://localhost:5001/users")
       .then((response) => response.json())
-      .then((res) => setContacts(res));
-  }, []);
+      .then((res) => {
+        setContacts(res)
+        setDeleted(false)
+      });
+  }, [deleted]);
 
   const handleChange = () => {};
+  
+  const handleDelete = (e, id) => {
+    e.stopPropagation()
+    fetch(`http://localhost:5001/users/${id}`).then((response) => response.json()).then((res) => res.delete ? setDeleted(true) : setDeleted(false))
+  }
 
   return (
     <Grid container>
@@ -69,7 +79,6 @@ const ContactList = () => {
             </Grid>
           </Grid>
         </Paper>
-
         {contacts.map((contact) => (
           <Paper
             variant="outlined"
@@ -95,8 +104,12 @@ const ContactList = () => {
                 <Grid item xs={4}>
                   <h6>{contact.fullName}</h6>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={4}>
                   <h6>{contact.company}</h6>
+                </Grid>
+                <Grid item xs={1}> 
+                  <DeleteForeverRoundedIcon 
+                  className={classes.checkbox} onClick={(e) => handleDelete(e, contact._id)}/>
                 </Grid>
               </Grid>
             </div>

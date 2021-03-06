@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, {useState} from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import Contact from "./components/Contact";
@@ -70,8 +70,19 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 const App = () => {
-  const [open, setOpen] = React.useState(false);
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [company, setCompany] = useState('')
+  const [address, setAddress] = useState('')
+
+  const [fullNameError, setFullNameError] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+  const [companyError, setCompanyError] = useState('')
+  const [addressError, setAddressError] = useState('')
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -79,6 +90,33 @@ const App = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSubmit = () => {
+    if(!fullName) {
+      setFullNameError('Full Name is Missing')
+    }
+    if(!company) {
+      setCompanyError('Company is Missing')
+    }
+    if(!phone) {
+      setPhoneError('Phone is Missing')
+    }
+    if(!address) {
+      setAddressError('Address is Missing')
+    }
+    if(!email){
+      setEmailError('Email is Missing')
+    }
+    if (fullName && company && phone && email && address) {      
+      fetch('http://localhost:5001/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({fullName, company, phone, email, address}),
+      }).then((response) => response.json()).then((res) => !res.error? setOpen(false) : setOpen(true))
+    }
+  }
   return (
     <>
       <Grid container spacing={3}>
@@ -114,15 +152,15 @@ const App = () => {
         </DialogTitle>
         <DialogContent dividers>
           <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Full Name" />
-            <TextField id="standard-basic" label="Email" />
-            <TextField id="standard-basic" label="Phone" />
-            <TextField id="standard-basic" label="Company" />
-            <TextField id="standard-basic" label="Address" />
+            <TextField  label="Full Name" required={true} value={fullName} onChange={(e)=> setFullName(e.target.value)}/>
+            <TextField   label="Email" type="email" required={true} value={email} onChange={(e)=> setEmail(e.target.value)}/>
+            <TextField label="Phone" required={true} value={phone} onChange={(e)=> setPhone(e.target.value)}/>
+            <TextField  label="Company" required={true} value={company} onChange={(e)=> setCompany(e.target.value)}/>
+            <TextField  label="Address" required={true} value={address} onChange={(e)=> setAddress(e.target.value)}/>
           </form>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} color="secondary">
+          <Button autoFocus onClick={handleSubmit} color="secondary">
             Add Contact
           </Button>
         </DialogActions>
