@@ -19,9 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     border: "1px solid red",
-    marginLeft: "3rem",
-    padding: "1rem",
-    width: "30rem"
+    marginLeft: "10rem",
+    padding: "2rem",
+    width: "25rem",
+    backgroundColor: "#F1F1F1",
+    fontSize: ".8rem"
   },
   center: {    
     margin: "auto",
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ContactDetails = ({ fullName, email, phone, company, address }) => {  
+const ContactDetails = ({selected}) => { 
   const classes = useStyles();
 
   return (
@@ -42,31 +44,31 @@ const ContactDetails = ({ fullName, email, phone, company, address }) => {
         <p>Full name</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{fullName}</p>
+        <p>{selected.fullName}</p>
       </Grid>
       <Grid item xs={6} >
         <p>Email</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{email}</p>
+        <p>{selected.email}</p>
       </Grid>
       <Grid item xs={6} >
         <p>Phone</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{phone}</p>
+        <p>{selected.phone}</p>
       </Grid>
       <Grid item xs={6} >
         <p>Company</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{company}</p>
+        <p>{selected.company}</p>
       </Grid>
       <Grid item xs={6} >
         <p>Address</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{address}</p>
+        <p>{selected.address}</p>
       </Grid>
     </Grid>
 
