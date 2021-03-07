@@ -78,6 +78,7 @@ const App = () => {
   const [company, setCompany] = useState('')
   const [address, setAddress] = useState('')
   const [isAdded, setIsAdded] = useState(false)
+  const [search, setSearch] = useState('')
 
   const [fullNameError, setFullNameError] = useState('')
   const [emailError, setEmailError] = useState('')
@@ -91,6 +92,10 @@ const App = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSearch = (value) => {
+    setSearch(value)
+  }
 
   const handleSubmit = async () => {
     if(!fullName) {
@@ -138,7 +143,7 @@ const App = () => {
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={4}>
-            <Search />
+            <Search handleSearch={handleSearch}/>
           </Grid>
           <Grid item xs={2} >
             <Button
@@ -151,7 +156,7 @@ const App = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <ContactList isAdded={isAdded} handleAdded={() => setIsAdded(false)}/>
+          <ContactList isAdded={isAdded} handleAdded={() => setIsAdded(false)} search={search}/>
         </Grid>
       </Grid>
       <Dialog

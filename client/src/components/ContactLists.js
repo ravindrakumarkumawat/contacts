@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ContactList = ({isAdded, handleAdded}) => {
+const ContactList = ({isAdded, handleAdded, search}) => {
   const classes = useStyles();
   const [contacts, setContacts] = useState([])
   const [selected, setSelected] = useState(null)
@@ -145,7 +145,7 @@ const ContactList = ({isAdded, handleAdded}) => {
             </Grid>
           </Grid>
         </Paper>
-        {contacts.map((contact) => (
+        {contacts.filter(contact => contact.fullName.match(search)).map((contact) => (
           <Paper
             variant="outlined"
             className={classes.paper}

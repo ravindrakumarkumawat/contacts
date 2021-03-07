@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Search = () => {
+const Search = ({handleSearch}) => {
   const classes = useStyles();
 
   return (
@@ -66,7 +66,7 @@ const Search = () => {
             input: classes.inputInput,
           }}
           inputProps={{ "aria-label": "search" }}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={(e) => handleSearch(e.target.value)}
         />
       </div>
     </div>
