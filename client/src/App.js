@@ -77,6 +77,8 @@ const App = () => {
   const [phone, setPhone] = useState('')
   const [company, setCompany] = useState('')
   const [address, setAddress] = useState('')
+  const [isAdded, setIsAdded] = useState(false)
+  const [responseData, setResponseData] = useState({})
 
   const [fullNameError, setFullNameError] = useState('')
   const [emailError, setEmailError] = useState('')
@@ -91,7 +93,7 @@ const App = () => {
     setOpen(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if(!fullName) {
       setFullNameError('Full Name is Missing')
     }
@@ -107,14 +109,27 @@ const App = () => {
     if(!email){
       setEmailError('Email is Missing')
     }
-    if (fullName && company && phone && email && address) {      
-      fetch('http://localhost:5001/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({fullName, company, phone, email, address}),
-      }).then((response) => response.json()).then((res) => !res.error? setOpen(false) : setOpen(true))
+    if (fullName && company && phone && email && address) {  
+      try{
+        const data =  await fetch('http://localhost:5001/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({fullName, company, phone, email, address}),
+        })
+        const response = await data.json()
+        
+        if(!response.error) {
+          setOpen(false)
+          setIsAdded(true)
+          setResponseData(response)
+        } else {
+          setOpen(false)
+        }
+      }catch(err) {
+        console.log(err)
+      }     
     }
   }
   return (
@@ -138,7 +153,7 @@ const App = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <ContactList />
+          <ContactList isAdded={isAdded} handleAdded={() => setIsAdded(false)} data={responseData}/>
         </Grid>
       </Grid>
       <Dialog

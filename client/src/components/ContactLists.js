@@ -40,19 +40,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ContactList = () => {
+const ContactList = ({isAdded, handleAdded, data}) => {
   const classes = useStyles();
   const [contacts, setContacts] = useState([])
   const [selected, setSelected] = useState(null)
   const checked = true;
 
   useEffect(() => {
-    fetch("http://localhost:5001/users")
+    if(!isAdded) {
+      fetch("http://localhost:5001/users")
       .then((response) => response.json())
       .then((res) => {
         setContacts(res)
-      });    
-  }, []);
+      }); 
+    } else {
+      setContacts([])
+      fetch("http://localhost:5001/users")
+      .then((response) => response.json())
+      .then((res) => {
+        setContacts(res)
+      });
+      handleAdded()
+    }
+  }, [isAdded, contacts, data, handleAdded]);
 
   const handleChange = () => {};
   
@@ -66,7 +76,6 @@ const ContactList = () => {
         }
       })
       const response = await del.json()
-      console.log(response)
       if(response.deleted){
         setContacts([...contacts.filter(contact => contact._id !== id)])
       }
