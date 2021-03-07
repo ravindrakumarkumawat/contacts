@@ -62,7 +62,7 @@ const ContactList = ({isAdded, handleAdded, data}) => {
       });
       handleAdded()
     }
-  }, [isAdded, contacts, data, handleAdded]);
+  }, [isAdded, handleAdded]);
 
   const handleChange = () => {};
   
