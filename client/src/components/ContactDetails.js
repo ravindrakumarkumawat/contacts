@@ -119,34 +119,34 @@ const ContactDetails = ({selected, handleDelete, handleUpdate}) => {
         <Avatar className={`${classes.center} ${classes.avatar}`}>{selected.fullName[0]}</Avatar>
         <p className={classes.center}>Working at | {selected.company}</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={3} >
         <p>Full name</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={9} >
         <p className={classes.detail}>{selected.fullName}</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={3} >
         <p>Email</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={9} >
         <p className={classes.detail}>{selected.email}</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={3} >
         <p>Phone</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={9} >
         <p className={classes.detail}>{selected.phone}</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={3} >
         <p>Company</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={9} >
         <p className={classes.detail}>{selected.company}</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={3} >
         <p>Address</p>
       </Grid>
-      <Grid item xs={6} >
+      <Grid item xs={9} >
         <p className={classes.detail}>{selected.address}</p>
       </Grid>
       <Grid item xs={4} >
