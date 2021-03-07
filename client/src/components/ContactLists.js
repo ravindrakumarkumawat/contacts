@@ -5,7 +5,6 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 import ContactDetails from "./ContactDetails";
-import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,11 +39,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ContactList = ({isAdded, handleAdded, data}) => {
+const ContactList = ({isAdded, handleAdded}) => {
   const classes = useStyles();
   const [contacts, setContacts] = useState([])
   const [selected, setSelected] = useState(null)
   const checked = true;
+  
+  const [fullNameError, setFullNameError] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+  const [companyError, setCompanyError] = useState('')
+  const [addressError, setAddressError] = useState('')
 
   useEffect(() => {
     if(!isAdded) {
@@ -78,9 +83,49 @@ const ContactList = ({isAdded, handleAdded, data}) => {
       const response = await del.json()
       if(response.deleted){
         setContacts([...contacts.filter(contact => contact._id !== id)])
+        setSelected(false)
       }
     } catch (err) {
       console.log('Error', err)
+    }
+  }
+
+  const handleUpdate = async (e, id, fullName, email, phone, company, address) => {
+    console.log(id, fullName, email, phone, company, address)
+
+    if(!fullName) {
+      setFullNameError('Full Name is Missing')
+    }
+    if(!company) {
+      setCompanyError('Company is Missing')
+    }
+    if(!phone) {
+      setPhoneError('Phone is Missing')
+    }
+    if(!address) {
+      setAddressError('Address is Missing')
+    }
+    if(!email){
+      setEmailError('Email is Missing')
+    }
+    if (fullName && company && phone && email && address) {  
+      try{
+        const data =  await fetch(`http://localhost:5001/users/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({fullName, company, phone, email, address}),
+        })
+        const response = await data.json()
+        
+        if(!response.error) {
+          setContacts([...contacts.filter(contact => contact._id !== id), response])
+          setSelected(response)
+        }
+      }catch(err) {
+        console.log(err)
+      }     
     }
   }
 
@@ -125,12 +170,8 @@ const ContactList = ({isAdded, handleAdded, data}) => {
                 <Grid item xs={4}>
                   <h6>{contact.fullName}</h6>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={5}>
                   <h6>{contact.company}</h6>
-                </Grid>
-                <Grid item xs={1}> 
-                  <DeleteForeverRoundedIcon 
-                  className={classes.checkbox} onClick={(e) => handleDelete(e, contact._id)}/>
                 </Grid>
               </Grid>
             </div>
@@ -139,7 +180,7 @@ const ContactList = ({isAdded, handleAdded, data}) => {
       </Grid>
       {selected && (
         <Grid item xs={6}>
-          <ContactDetails selected={selected}/>
+          <ContactDetails selected={selected} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
         </Grid>
       )}
     </Grid>
