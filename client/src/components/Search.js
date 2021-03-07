@@ -42,9 +42,9 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "12ch",
+      width: "22ch",
       "&:focus": {
-        width: "20ch",
+        width: "27ch",
       },
     },
   },
@@ -60,12 +60,13 @@ const Search = () => {
           <SearchIcon />
         </div>
         <InputBase
-          placeholder="Search…"
+          placeholder="Search Contact Names…"
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
           inputProps={{ "aria-label": "search" }}
+          onChange={(e) => console.log(e.target.value)}
         />
       </div>
     </div>
