@@ -91,8 +91,6 @@ const ContactList = ({isAdded, handleAdded, search}) => {
   }
 
   const handleUpdate = async (e, id, fullName, email, phone, company, address) => {
-    console.log(id, fullName, email, phone, company, address)
-
     if(!fullName) {
       setFullNameError('Full Name is Missing')
     }
