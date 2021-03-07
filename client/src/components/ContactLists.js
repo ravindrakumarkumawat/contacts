@@ -43,7 +43,6 @@ const ContactList = ({isAdded, handleAdded, search}) => {
   const classes = useStyles();
   const [contacts, setContacts] = useState([])
   const [selected, setSelected] = useState(null)
-  const checked = true;
   
   const [fullNameError, setFullNameError] = useState('')
   const [emailError, setEmailError] = useState('')
@@ -67,9 +66,7 @@ const ContactList = ({isAdded, handleAdded, search}) => {
       });
       handleAdded()
     }
-  }, [isAdded, handleAdded]);
-
-  const handleChange = () => {};
+  }, [isAdded, handleAdded])
   
   const handleDelete = async (e, id) => {
     e.stopPropagation()
@@ -154,8 +151,6 @@ const ContactList = ({isAdded, handleAdded, search}) => {
               <Grid container>
                 <Grid item xs={2}>
                   <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
                     className={classes.checkbox}
                     inputProps={{ "aria-label": "primary checkbox" }}
                   />

@@ -38,11 +38,17 @@ const useStyles = makeStyles((theme) => ({
     fontSize: ".8rem",
     fontFamily: "Helvetica",    
     backgroundColor: "#F1F1F1",
-    color: "#E0BB75"
+    color: "#47525da6",
+    boxShadow: "0 0 .6rem rgba(0,0,0,0.2)",
+    border: "1px solid rgba(0,0,0,0.2)"
   },
   center: {    
-    margin: "auto",
-    textAlign: "center"
+    margin: "1.5rem auto",
+    textAlign: "center",
+  },
+  detail: {
+    color: "black",
+    fontSize: ".9rem",
   }
 }));
 
@@ -110,38 +116,38 @@ const ContactDetails = ({selected, handleDelete, handleUpdate}) => {
     <>
     <Grid container className={classes.grid}>
       <Grid item xs={12} >
-        <Avatar className={`${classes.center} ${classes.avatar}`}>H</Avatar>
-        <p className={classes.center}>Contact Details</p>
+        <Avatar className={`${classes.center} ${classes.avatar}`}>{selected.fullName[0]}</Avatar>
+        <p className={classes.center}>Working at | {selected.company}</p>
       </Grid>
       <Grid item xs={6} >
         <p>Full name</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{selected.fullName}</p>
+        <p className={classes.detail}>{selected.fullName}</p>
       </Grid>
       <Grid item xs={6} >
         <p>Email</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{selected.email}</p>
+        <p className={classes.detail}>{selected.email}</p>
       </Grid>
       <Grid item xs={6} >
         <p>Phone</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{selected.phone}</p>
+        <p className={classes.detail}>{selected.phone}</p>
       </Grid>
       <Grid item xs={6} >
         <p>Company</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{selected.company}</p>
+        <p className={classes.detail}>{selected.company}</p>
       </Grid>
       <Grid item xs={6} >
         <p>Address</p>
       </Grid>
       <Grid item xs={6} >
-        <p>{selected.address}</p>
+        <p className={classes.detail}>{selected.address}</p>
       </Grid>
       <Grid item xs={4} >
         <Button

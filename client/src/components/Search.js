@@ -7,7 +7,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginLeft: "7.7rem",
-    border: "1px solid #f1f1f1",
+    border: "1px solid #f1f1f1",    
+    boxShadow: "0 0 .6rem rgba(0,0,0,0.2)",
+    border: "1px solid rgba(0,0,0,0.2)"
   },
   search: {
     position: "relative",
