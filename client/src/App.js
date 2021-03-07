@@ -78,7 +78,6 @@ const App = () => {
   const [company, setCompany] = useState('')
   const [address, setAddress] = useState('')
   const [isAdded, setIsAdded] = useState(false)
-  const [responseData, setResponseData] = useState({})
 
   const [fullNameError, setFullNameError] = useState('')
   const [emailError, setEmailError] = useState('')
@@ -123,7 +122,6 @@ const App = () => {
         if(!response.error) {
           setOpen(false)
           setIsAdded(true)
-          setResponseData(response)
         } else {
           setOpen(false)
         }
@@ -153,7 +151,7 @@ const App = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <ContactList isAdded={isAdded} handleAdded={() => setIsAdded(false)} data={responseData}/>
+          <ContactList isAdded={isAdded} handleAdded={() => setIsAdded(false)}/>
         </Grid>
       </Grid>
       <Dialog
