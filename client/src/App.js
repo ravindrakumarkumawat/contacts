@@ -80,12 +80,6 @@ const App = () => {
   const [isAdded, setIsAdded] = useState(false)
   const [search, setSearch] = useState('')
 
-  const [fullNameError, setFullNameError] = useState('')
-  const [emailError, setEmailError] = useState('')
-  const [phoneError, setPhoneError] = useState('')
-  const [companyError, setCompanyError] = useState('')
-  const [addressError, setAddressError] = useState('')
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -98,21 +92,6 @@ const App = () => {
   }
 
   const handleSubmit = async () => {
-    if(!fullName) {
-      setFullNameError('Full Name is Missing')
-    }
-    if(!company) {
-      setCompanyError('Company is Missing')
-    }
-    if(!phone) {
-      setPhoneError('Phone is Missing')
-    }
-    if(!address) {
-      setAddressError('Address is Missing')
-    }
-    if(!email){
-      setEmailError('Email is Missing')
-    }
     if (fullName && company && phone && email && address) {  
       try{
         const data =  await fetch('http://localhost:5001/users', {

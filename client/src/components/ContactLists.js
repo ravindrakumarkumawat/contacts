@@ -43,12 +43,6 @@ const ContactList = ({isAdded, handleAdded, search}) => {
   const classes = useStyles();
   const [contacts, setContacts] = useState([])
   const [selected, setSelected] = useState(null)
-  
-  const [fullNameError, setFullNameError] = useState('')
-  const [emailError, setEmailError] = useState('')
-  const [phoneError, setPhoneError] = useState('')
-  const [companyError, setCompanyError] = useState('')
-  const [addressError, setAddressError] = useState('')
 
   useEffect(() => {
     if(!isAdded) {
@@ -88,21 +82,6 @@ const ContactList = ({isAdded, handleAdded, search}) => {
   }
 
   const handleUpdate = async (e, id, fullName, email, phone, company, address) => {
-    if(!fullName) {
-      setFullNameError('Full Name is Missing')
-    }
-    if(!company) {
-      setCompanyError('Company is Missing')
-    }
-    if(!phone) {
-      setPhoneError('Phone is Missing')
-    }
-    if(!address) {
-      setAddressError('Address is Missing')
-    }
-    if(!email){
-      setEmailError('Email is Missing')
-    }
     if (fullName && company && phone && email && address) {  
       try{
         const data =  await fetch(`http://localhost:5001/users/${id}`, {
