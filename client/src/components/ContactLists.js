@@ -42,9 +42,8 @@ const useStyles = makeStyles((theme) => ({
 
 const ContactList = () => {
   const classes = useStyles();
-  const [contacts, setContacts] = useState([]);
-  const [selected, setSelected] = useState(null);
-  const [deleted, setDeleted] = useState(false)
+  const [contacts, setContacts] = useState([])
+  const [selected, setSelected] = useState(null)
   const checked = true;
 
   useEffect(() => {
@@ -52,20 +51,28 @@ const ContactList = () => {
       .then((response) => response.json())
       .then((res) => {
         setContacts(res)
-        setDeleted(false)
-      });
-  }, [deleted]);
+      });    
+  }, []);
 
   const handleChange = () => {};
   
-  const handleDelete = (e, id) => {
+  const handleDelete = async (e, id) => {
     e.stopPropagation()
-    fetch(`http://localhost:5001/users/${id}`,{
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
+    try {
+      const del = await fetch(`http://localhost:5001/users/${id}`,{
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      const response = await del.json()
+      console.log(response)
+      if(response.deleted){
+        setContacts([...contacts.filter(contact => contact._id !== id)])
       }
-    }).then((response) => response.json()).then((res) => res.delete ? setDeleted(true) : setDeleted(false))
+    } catch (err) {
+      console.log('Error', err)
+    }
   }
 
   return (
